@@ -4,9 +4,9 @@
 
 ### Create API
 
-    - [x] Youtube Api
+- [x] Youtube Api
 
 ### Store `Easy-Peasy`
 
-    - [x] Store
-    - [ ] Playlist Model
+- [x] Store
+- [ ] Playlist Model
