@@ -1,13 +1,19 @@
-import { useState } from "react";
-import getPlaylist from "./api";
+import { useStoreActions, useStoreState } from "easy-peasy";
+import { useEffect, useState } from "react";
+
 import "./App.css";
 import reactLogo from "./assets/react.svg";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  const data = getPlaylist("PLHiZ4m8vCp9OkrURufHpGUUTBjJhO9Ghy");
-  console.log(data);
+  const { getPlaylist } = useStoreActions((state) => state.playlists);
+  const playlists = useStoreState((state) => state.playlists);
+
+  console.log(playlists);
+  useEffect(() => {
+    getPlaylist("PLHiZ4m8vCp9OkrURufHpGUUTBjJhO9Ghy");
+  }, []);
   return (
     <div className="App">
       <div>
