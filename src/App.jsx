@@ -1,49 +1,35 @@
 import { CssBaseline } from "@mui/material";
-import { useStoreState } from "easy-peasy";
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navigation/Navbar";
+import FavoritePlaylist from "./pages/Favorite";
 import HomePage from "./pages/HomePage";
+import NotFound from "./pages/NotFound";
 import PlaylistItem from "./pages/PlaylistItem";
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Playlists from "./pages/Playlists";
+import RecentPlaylist from "./pages/Recent";
 
-const Playlists = lazy(() => import("./pages/Playlists"));
-const PageLoading = lazy(() => import("./components/Loading/PageLoading"));
+// const Favorite = lazy(() => import("./pages/Favorite"));
+// const PlaylistItem = lazy(() => import("./pages/PlaylistItem"));
+// const Recent = lazy(() => import("./pages/Recent"));
+// const NotFound = lazy(() => import("./pages/NotFound"));
+
+// const Playlists = lazy(() => import("./pages/Playlists"));
+// const PageLoading = lazy(() => import("./components/Loading/PageLoading"));
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const playlists = useStoreState((state) => state.playlists);
-
-  console.log(playlists);
-  useEffect(() => {}, []);
   return (
     <div>
       <CssBaseline />
       <Navbar />
       <Routes>
         <Route index element={<HomePage />} />
-        <Route
-          path="/playlists"
-          element={<Playlists playlists={playlists} />}
-        />
-        <Route
-          path="/playlists/:playlistId"
-          element={
-            <Suspense fallback={<PageLoading />}>
-              <PlaylistItem />
-            </Suspense>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<PageLoading />}>
-              <NotFound />
-            </Suspense>
-          }
-        />
+        <Route path="/playlists" element={<Playlists />} />
+        <Route path="/playlists/:playlistId" element={<PlaylistItem />} />
+        <Route path="/favorite" element={<FavoritePlaylist />} />
+        <Route path="/recent" element={<RecentPlaylist />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

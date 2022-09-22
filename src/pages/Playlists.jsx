@@ -1,10 +1,19 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+import { useStoreState } from "easy-peasy";
 import React from "react";
 import ListCard from "../components/Playlists/PlaylistCard";
 
-const Playlists = ({ playlists }) => {
+const Playlists = () => {
+  const playlists = useStoreState((state) => state.playlists);
   const playlistArray = Object.values(playlists.data);
   console.log(playlistArray);
+  if (playlistArray.length === 0) {
+    return (
+      <Container maxWidth="md">
+        <Typography variant="h2">Sorry! You have No Any Playlists</Typography>
+      </Container>
+    );
+  }
   return (
     <Container maxWidth={"lg"} sx={{ my: 16 }}>
       <Grid container spacing={2}>

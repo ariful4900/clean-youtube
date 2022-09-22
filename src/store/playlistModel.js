@@ -9,6 +9,12 @@ const playlistModel = persist({
   addPlaylist: action((state, payload) => {
     state.data[payload.playlistId] = payload;
   }),
+  removePlaylist: action((state, playlistId)=>{
+    if(state.data[playlistId]){
+      delete state.data[playlistId]
+    }
+    state.data
+  }),
 
   setLoading: action((state, payload) => {
     state.isLoading = payload;

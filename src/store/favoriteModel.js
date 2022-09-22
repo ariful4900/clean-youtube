@@ -1,13 +1,15 @@
-const { persist, action } = require("easy-peasy");
+import { action, persist } from "easy-peasy";
 
 
 const favoriteModel = persist({
     items:[],
     addToFavorite: action((state, playlistId)=>{
-        state.items.unshift(playlistId)
+        if(!state.items.includes(playlistId)){
+            state.items.unshift(playlistId)
+        }
        
     }),
-    removeFromFavorite: action((state, playlistId)=>{
+    removeFromFavorite: action((state, playlistId)=>{  
         state.items= state.items.filter(pid=>playlistId !== pid)
        
     }),

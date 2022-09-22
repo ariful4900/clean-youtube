@@ -1,13 +1,14 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import { useStoreState } from "easy-peasy";
-import React from "react";
+import { useStoreActions, useStoreState } from "easy-peasy";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VideoItemCard from "../components/Playlists/VideoItemCard";
 
 const PlaylistItem = () => {
   const { playlistId } = useParams();
   const playlists = useStoreState((state) => state.playlists);
+  const recent = useStoreActions((state) => state.recent);
 
   const {
     channelId,
@@ -18,6 +19,10 @@ const PlaylistItem = () => {
   } = Object.values(playlists.data).find(
     (item) => item.playlistId === playlistId
   );
+
+  useEffect(() => {
+    recent.addToRecent(playlistId);
+  }, []);
 
   return (
     <Container maxWidth="lg">

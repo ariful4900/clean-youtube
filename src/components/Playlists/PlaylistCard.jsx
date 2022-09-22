@@ -10,10 +10,24 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Link as RouterLink } from "react-router-dom";
+import { useStoreActions } from "easy-peasy";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const ListCard = ({ item }) => {
+  const { favorite, recent, playlists } = useStoreActions((state) => state);
+  const navigate = useNavigate();
   const { playlistThumbnail, playlistTitle, playlistId, channelTitle } = item;
+  const handleFavorite = (id) => {
+    favorite.addToFavorite(id);
+    navigate("/favorite");
+  };
+
+  const handleDelete = (id) => {
+    favorite.removeFromFavorite(id);
+    recent.removeFromRecent(id);
+    playlists.removePlaylist(id);
+  };
+
   return (
     <Card
       sx={{
@@ -54,10 +68,10 @@ const ListCard = ({ item }) => {
           <Typography variant="body2">Start Tutorial</Typography>
         </Button>
         <Box>
-          <Button>
+          <Button onClick={() => handleDelete(playlistId)}>
             <DeleteForever />
           </Button>
-          <Button>
+          <Button onClick={() => handleFavorite(playlistId)}>
             <StarPurple500 />
           </Button>
         </Box>

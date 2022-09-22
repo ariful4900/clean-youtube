@@ -21,10 +21,10 @@ const Menus = () => {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Link component={RouterLink} sx={linkStyle}>
+        <Link component={RouterLink} sx={linkStyle} to="/recent">
           Recent
         </Link>
-        <Link component={RouterLink} sx={linkStyle}>
+        <Link component={RouterLink} sx={linkStyle} to="/favorite">
           Favorite
         </Link>
         <Link
