@@ -1,12 +1,10 @@
 import { Container, Grid, Typography } from "@mui/material";
-import { useStoreState } from "easy-peasy";
 import React from "react";
 import ListCard from "../components/Playlists/PlaylistCard";
+import usePlaylist from "../hooks/usePlaylist";
 
 const Playlists = () => {
-  const playlists = useStoreState((state) => state.playlists);
-  const playlistArray = Object.values(playlists.data);
-  console.log(playlistArray);
+  const { playlistArray } = usePlaylist();
   if (playlistArray.length === 0) {
     return (
       <Container maxWidth="md">

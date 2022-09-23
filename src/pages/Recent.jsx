@@ -1,14 +1,10 @@
 import { Container, Grid, Typography } from "@mui/material";
-import { useStoreState } from "easy-peasy";
 import React from "react";
 import ListCard from "../components/Playlists/PlaylistCard";
+import usePlaylist from "../hooks/usePlaylist";
 
 const RecentPlaylist = () => {
-  const { playlists, recent } = useStoreState((state) => state);
-  const playlistArray = Object.values(playlists.data);
-  const recentPlay = playlistArray.filter((item) => {
-    return recent.items.includes(item.playlistId);
-  });
+  const { recentPlay } = usePlaylist();
 
   if (recentPlay.length === 0) {
     return (
