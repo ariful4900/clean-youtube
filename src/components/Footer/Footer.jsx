@@ -6,10 +6,12 @@ const Footer = () => {
     <footer
       style={{
         margin: "20px 0px",
-        position: "fixed",
+        position: "static",
+        textAlign: "center",
         left: "50%",
         bottom: "0",
-        transform: "translateX(-50%)",
+
+        top: "100%",
       }}
     >
       <Container>

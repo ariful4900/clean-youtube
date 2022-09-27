@@ -50,7 +50,12 @@ const Navbar = () => {
             sx={{
               mr: 1,
               color: "green",
-              display: { xs: "none", sm: "none", md: "block" },
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "block",
+                fontSize: "40px",
+              },
             }}
           />
           <Typography

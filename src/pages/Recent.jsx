@@ -9,7 +9,7 @@ const RecentPlaylist = () => {
   if (recentPlay.length === 0) {
     return (
       <Container maxWidth="md">
-        <Typography variant="h2">
+        <Typography variant="h2" sx={{ flexGrow: 1 }}>
           Sorry! You have Not in use any playlist
         </Typography>
       </Container>
@@ -27,7 +27,7 @@ const RecentPlaylist = () => {
               item
               md={4}
               lg={4}
-              xl={4}
+              xl={3}
               xs={12}
               sm={6}
               key={item.playlistId}

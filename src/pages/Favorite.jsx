@@ -8,8 +8,8 @@ const FavoritePlaylist = () => {
 
   if (favoritePlay.length === 0) {
     return (
-      <Container maxWidth="md">
-        <Typography variant="h2">
+      <Container maxWidth="lg">
+        <Typography variant="h2" sx={{ flexGrow: 0 }}>
           Sorry! You have Not any favorite playlist
         </Typography>
       </Container>
@@ -27,7 +27,7 @@ const FavoritePlaylist = () => {
               item
               md={4}
               lg={4}
-              xl={4}
+              xl={3}
               sm={6}
               xs={12}
               key={item.playlistId}

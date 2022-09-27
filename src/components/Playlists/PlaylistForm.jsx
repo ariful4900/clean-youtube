@@ -16,11 +16,30 @@ const PlaylistForm = ({ handleClose, open }) => {
   const navigate = useNavigate();
   console.log(state);
 
+  const handleStateChange = (e) => {
+    const plId = e.target.value;
+    if (plId.startsWith("https://www.youtube.com/")) {
+      if (plId.split("=")[2].startsWith("PL")) {
+        setState(plId.split("=")[2]);
+      } else {
+        setState("");
+        alert("Sorry Input The Valid Playlist link");
+      }
+    } else if (plId.startsWith("PL")) {
+      setState(plId);
+    } else {
+      setState("");
+      alert("Sorry Input The Valid Playlist link");
+    }
+  };
+
   const handlePlaylist = () => {
-    playlists.getPlaylist(state);
-    setState("");
-    handleClose();
-    navigate("/playlists");
+    if (state) {
+      playlists.getPlaylist(state);
+      setState("");
+      handleClose();
+      navigate("/playlists");
+    }
   };
   return (
     <div>
@@ -51,7 +70,8 @@ const PlaylistForm = ({ handleClose, open }) => {
             type="text"
             fullWidth
             variant="standard"
-            onChange={(e) => setState(e.target.value)}
+            onChange={handleStateChange}
+            value={state}
           />
         </DialogContent>
         <DialogActions>

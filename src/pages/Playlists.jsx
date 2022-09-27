@@ -8,7 +8,9 @@ const Playlists = () => {
   if (playlistArray.length === 0) {
     return (
       <Container maxWidth="md">
-        <Typography variant="h2">Sorry! You have No Any Playlists</Typography>
+        <Typography sx={{ flexGrow: 1 }} variant="h2">
+          Sorry! You have No Any Playlists
+        </Typography>
       </Container>
     );
   }
@@ -21,7 +23,7 @@ const Playlists = () => {
               item
               md={4}
               lg={4}
-              xl={4}
+              xl={3}
               xs={12}
               sm={6}
               key={item.playlistId}

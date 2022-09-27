@@ -3,6 +3,7 @@ import {
   PlayCircleOutline,
   StarPurple500,
 } from "@mui/icons-material";
+import StarIcon from "@mui/icons-material/Star";
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -10,15 +11,27 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const ListCard = ({ item }) => {
   const { favorite, recent, playlists } = useStoreActions((state) => state);
+  const { items } = useStoreState((state) => state.favorite);
   const navigate = useNavigate();
-  const { playlistThumbnail, playlistTitle, playlistId, channelTitle } = item;
+  const {
+    playlistThumbnail,
+    playlistTitle,
+    playlistId,
+    channelTitle,
+    playlistItems,
+  } = item;
+
   const handleFavorite = (id) => {
     favorite.addToFavorite(id);
+    navigate("/favorite");
+  };
+  const handleRemoveFavorite = (id) => {
+    favorite.removeFromFavorite(id);
     navigate("/favorite");
   };
 
@@ -44,12 +57,16 @@ const ListCard = ({ item }) => {
         alt="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography variant="h6" component="h6">
           {playlistTitle.length > 50
             ? playlistTitle.substr(0, 50) + "..."
             : playlistTitle}
         </Typography>
         <Typography variant="body2">{channelTitle}</Typography>
+        <Typography variant="body2">
+          {" "}
+          Total Video: {playlistItems.length}
+        </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
       <CardActions
@@ -69,12 +86,25 @@ const ListCard = ({ item }) => {
           Start Tutorial
         </Button>
         <Box>
-          <Button onClick={() => handleDelete(playlistId)}>
-            <DeleteForever />
-          </Button>
-          <Button onClick={() => handleFavorite(playlistId)}>
-            <StarPurple500 />
-          </Button>
+          <DeleteForever
+            onClick={() => handleDelete(playlistId)}
+            titleAccess="Delete this"
+            sx={{ cursor: "pointer", color: "red" }}
+          />
+
+          {items.includes(playlistId) ? (
+            <StarIcon
+              onClick={() => handleRemoveFavorite(playlistId)}
+              titleAccess="Remove From Favorite"
+              sx={{ cursor: "pointer", color: "red" }}
+            />
+          ) : (
+            <StarPurple500
+              onClick={() => handleFavorite(playlistId)}
+              titleAccess="Add To Favorite"
+              sx={{ cursor: "pointer", color: "green" }}
+            />
+          )}
         </Box>
       </CardActions>
     </Card>
