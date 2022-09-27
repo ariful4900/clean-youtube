@@ -8,8 +8,8 @@ import { Link as RouterLink } from "react-router-dom";
 import useDialog from "../../hooks/useDialog";
 import PlaylistForm from "../Playlists/PlaylistForm";
 
-import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,7 +26,7 @@ const pages = [
   },
   {
     name: "Playlists",
-    to: "/",
+    to: "/playlists",
   },
 ];
 
@@ -35,18 +35,24 @@ const Navbar = () => {
   const { open, handleOpen, handleClose } = useDialog();
 
   const handleOpenNavMenu = (event) => {
-    // setAnchorElNav(event.currentTarget);
+    setAnchorElNav(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    // setAnchorElNav(null);
+    setAnchorElNav(null);
   };
 
   return (
     <AppBar position="sticky" sx={{ background: "white" }}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <YouTubeIcon
+            sx={{
+              mr: 1,
+              color: "green",
+              display: { xs: "none", sm: "none", md: "block" },
+            }}
+          />
           <Typography
             variant="h4"
             noWrap
@@ -72,7 +78,7 @@ const Navbar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="success"
             >
               <MenuIcon />
             </IconButton>
@@ -100,6 +106,7 @@ const Navbar = () => {
                     to={item.to}
                     component={RouterLink}
                     textAlign="center"
+                    sx={{ textDecoration: "none" }}
                   >
                     {item.name}
                   </Typography>
@@ -107,9 +114,9 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
-            variant="h3"
+            variant="h5"
             noWrap
             component={RouterLink}
             to="/"
@@ -119,7 +126,6 @@ const Navbar = () => {
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
 
               textDecoration: "none",
             }}
@@ -141,7 +147,12 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Button variant="contained" color="success" onClick={handleOpen}>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleOpen}
+              sx={{ fontSize: { xs: "10px", sm: "14px", md: "16px" } }}
+            >
               Add Playlists
             </Button>
           </Box>
