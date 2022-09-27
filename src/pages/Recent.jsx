@@ -23,7 +23,15 @@ const RecentPlaylist = () => {
       <Grid container spacing={2}>
         {recentPlay.length > 0 &&
           recentPlay.map((item) => (
-            <Grid item md={4} key={item.playlistId}>
+            <Grid
+              item
+              md={4}
+              lg={4}
+              xl={4}
+              xs={12}
+              sm={6}
+              key={item.playlistId}
+            >
               <ListCard item={item} />
             </Grid>
           ))}

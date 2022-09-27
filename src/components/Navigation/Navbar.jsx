@@ -1,9 +1,6 @@
-import MenuIcon from "@mui/icons-material/Menu";
-
 import { Button, Container } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -22,15 +19,6 @@ const Navbar = () => {
       <AppBar position="sticky" sx={{ background: "white" }}>
         <Container maxWidth="lg">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="primary"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography
               variant="h6"
               noWrap
@@ -38,7 +26,13 @@ const Navbar = () => {
               to="/"
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", sm: "block" },
+                display: {
+                  xs: "none",
+                  sm: "block",
+                  textDecoration: "none",
+                  fontSize: "40px",
+                  textShadow: "1px 1px #00dd07",
+                },
               }}
               color="primary"
             >

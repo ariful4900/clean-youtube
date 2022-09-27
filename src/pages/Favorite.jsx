@@ -10,7 +10,7 @@ const FavoritePlaylist = () => {
     return (
       <Container maxWidth="md">
         <Typography variant="h2">
-          Sorry! You have Not in use any playlist
+          Sorry! You have Not any favorite playlist
         </Typography>
       </Container>
     );
@@ -23,7 +23,15 @@ const FavoritePlaylist = () => {
       <Grid container spacing={2}>
         {favoritePlay.length > 0 &&
           favoritePlay.map((item) => (
-            <Grid item md={4} key={item.playlistId}>
+            <Grid
+              item
+              md={4}
+              lg={4}
+              xl={4}
+              sm={6}
+              xs={12}
+              key={item.playlistId}
+            >
               <ListCard item={item} />
             </Grid>
           ))}

@@ -63,9 +63,10 @@ const ListCard = ({ item }) => {
           variant="text"
           component={RouterLink}
           to={`/playlists/${playlistId}`}
+          sx={{ fontSize: "12px" }}
         >
           <PlayCircleOutline />
-          <Typography variant="body2">Start Tutorial</Typography>
+          Start Tutorial
         </Button>
         <Box>
           <Button onClick={() => handleDelete(playlistId)}>

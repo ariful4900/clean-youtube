@@ -1,12 +1,8 @@
-import { CardMedia, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
 // import Swiper JS
-import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper styles
 import "swiper/css";
-import slide1 from "../assets/images/ct-slide-01.jpg";
-import slide2 from "../assets/images/ct-slide-02.jpg";
-import slide3 from "../assets/images/ct-slide-03.jpg";
 import HomeCard from "../components/Playlists/HomeCard";
 import usePlaylist from "../hooks/usePlaylist";
 
@@ -15,7 +11,15 @@ const HomePage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 2 }}>
-      <div className="ct_slider">
+      {recentPlay.length === 0 &&
+      favoritePlay.length === 0 &&
+      playlistArray.length === 0 ? (
+        <Typography variant="h2">
+          No Content Here. Please New Playlist
+        </Typography>
+      ) : (
+        <>
+          {/* <div className="ct_slider" style={{ height: "400px", display: "block" }}>
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
@@ -25,11 +29,12 @@ const HomePage = () => {
           navigation={true}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
+          style={{ height: "100%" }}
         >
           <SwiperSlide>
             <CardMedia
               component="img"
-              height="300"
+              height="100%"
               image={slide1}
               alt="Paella dish"
             />
@@ -37,7 +42,7 @@ const HomePage = () => {
           <SwiperSlide>
             <CardMedia
               component="img"
-              height="300"
+              height="100%"
               image={slide2}
               alt="Paella dish"
             />
@@ -45,55 +50,99 @@ const HomePage = () => {
           <SwiperSlide>
             <CardMedia
               component="img"
-              height="300"
+              height="100%"
               image={slide3}
               alt="Paella dish"
             />
           </SwiperSlide>
         </Swiper>
-      </div>
-      <section className="recentArea">
-        <Typography variant="h4">Recent Playlists</Typography>
-        {recentPlay.length === 0 ? (
-          <Typography>Sorry! Recently You don't Visit Any Playlists</Typography>
-        ) : (
-          <Grid container spacing={2}>
-            {recentPlay.slice(0, 3).map((item) => (
-              <Grid key={item.playlistId} item md={4}>
-                <HomeCard item={item} />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </section>
-      <section className="FavoriteArea">
-        <Typography variant="h4">Your All Favorite Playlists</Typography>
-        {favoritePlay.length === 0 ? (
-          <Typography>Sorry! You don't have favorite Any Playlists</Typography>
-        ) : (
-          <Grid container spacing={2}>
-            {favoritePlay.slice(0, 3).map((item) => (
-              <Grid key={item.playlistId} item md={4}>
-                <HomeCard item={item} />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </section>
-      <section className="FavoriteArea">
-        <Typography variant="h4">Your Playlists</Typography>
-        {playlistArray.length === 0 ? (
-          <Typography>Sorry! You don't have Any Playlists</Typography>
-        ) : (
-          <Grid container spacing={2}>
-            {playlistArray.slice(0, 3).map((item) => (
-              <Grid key={item.playlistId} item md={4}>
-                <HomeCard item={item} />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </section>
+      </div> */}
+          <section className="recentArea">
+            {recentPlay.length > 0 && (
+              <>
+                <Typography className="heading" variant="h4">
+                  Recent Playlists
+                </Typography>
+
+                <Grid container spacing={2}>
+                  {recentPlay
+                    .reverse()
+                    .slice(0, 3)
+                    .map((item) => (
+                      <Grid
+                        key={item.playlistId}
+                        item
+                        md={3}
+                        lg={3}
+                        xl={4}
+                        xs={12}
+                        sm={6}
+                      >
+                        <HomeCard item={item} />
+                      </Grid>
+                    ))}
+                </Grid>
+              </>
+            )}
+          </section>
+          <section className="FavoriteArea">
+            {favoritePlay.length > 0 && (
+              <>
+                <Typography className="heading" variant="h4">
+                  Your All Favorite Playlists
+                </Typography>
+
+                <Grid container spacing={2}>
+                  {favoritePlay
+                    .reverse()
+                    .slice(0, 3)
+                    .map((item) => (
+                      <Grid
+                        key={item.playlistId}
+                        item
+                        md={3}
+                        lg={3}
+                        xl={4}
+                        xs={12}
+                        sm={6}
+                      >
+                        <HomeCard item={item} />
+                      </Grid>
+                    ))}
+                </Grid>
+              </>
+            )}
+          </section>
+          <section className="FavoriteArea">
+            {playlistArray.length > 0 && (
+              <>
+                <Typography className="heading" variant="h4">
+                  Your Playlists
+                </Typography>
+
+                <Grid container spacing={2}>
+                  {playlistArray
+                    .reverse()
+                    .slice(0, 3)
+                    .map((item) => (
+                      <Grid
+                        key={item.playlistId}
+                        item
+                        md={3}
+                        lg={3}
+                        xl={4}
+                        xs={12}
+                        sm={6}
+                      >
+                        <HomeCard item={item} />
+                      </Grid>
+                    ))}
+                </Grid>
+              </>
+            )}
+          </section>
+        </>
+      )}
     </Container>
   );
 };

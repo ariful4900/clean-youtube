@@ -1,22 +1,29 @@
+import { Button, Stack } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomeCard = ({ item }) => {
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate(`/playlists/${item.playlistId}`);
+  };
   return (
-    <Card>
+    <Card className="overlay">
       <CardMedia
         component="img"
-        height="140"
+        height={"100%"}
         image={item.playlistThumbnail.url}
         alt="green iguana"
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {item.title}
-        </Typography>
+      <CardContent className="overlayContent">
+        <Stack>
+          <Typography variant="h5">{item.playlistTitle}</Typography>
+          <Button onClick={handleHome}>View Details</Button>
+        </Stack>
       </CardContent>
     </Card>
   );

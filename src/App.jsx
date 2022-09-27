@@ -1,6 +1,8 @@
 import { CssBaseline } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import "../src/assets/style.css";
+import Footer from "./components/Footer/Footer";
 
 import Navbar from "./components/Navigation/Navbar";
 import FavoritePlaylist from "./pages/Favorite";
@@ -31,6 +33,7 @@ function App() {
         <Route path="/recent" element={<RecentPlaylist />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
