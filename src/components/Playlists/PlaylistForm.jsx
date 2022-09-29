@@ -7,18 +7,19 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import { useStoreActions } from "easy-peasy";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PlaylistForm = ({ handleClose, open }) => {
   const playlists = useStoreActions((state) => state.playlists);
-
+  const [state, setState] = useState("");
   const navigate = useNavigate();
 
   const handleStateChange = (e) => {
     const plId = e.target.value;
     if (plId.startsWith("https://www.youtube.com/")) {
-      if (plId.split("=")[2].startsWith("PL")) {
-        setState(plId.split("=")[2]);
+      if (plId.split("=")[1].startsWith("PL")) {
+        setState(plId.split("=")[1]);
       } else {
         setState("");
         alert("Sorry Input The Valid Playlist link");
