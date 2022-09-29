@@ -71,7 +71,6 @@ const PlaylistForm = ({ handleClose, open }) => {
             fullWidth
             variant="standard"
             onChange={handleStateChange}
-            value={state}
           />
         </DialogContent>
         <DialogActions>
