@@ -7,14 +7,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import { useStoreActions } from "easy-peasy";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PlaylistForm = ({ handleClose, open }) => {
   const playlists = useStoreActions((state) => state.playlists);
-  const [state, setState] = useState("");
+
   const navigate = useNavigate();
-  console.log(state);
 
   const handleStateChange = (e) => {
     const plId = e.target.value;
@@ -71,7 +69,6 @@ const PlaylistForm = ({ handleClose, open }) => {
             fullWidth
             variant="standard"
             onChange={handleStateChange}
-            value={state}
           />
         </DialogContent>
         <DialogActions>
